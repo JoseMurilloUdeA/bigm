@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big M Simplex - Interfaz Interactiva</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@13/lib/browser/math.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Big M</h1>
+            <p>Método de la M Grande - Programación Lineal</p>
+        </div>
+
+        <div class="content">
+            <div class="input-section">
+                <h2>Configuración del Problema</h2>
+
+                <div class="dimensions">
+                    <div class="dim-input">
+                        <label>Número de variables (n):</label>
+                        <input type="number" id="numVars" value="2" min="2" max="10">
+                    </div>
+                    <div class="dim-input">
+                        <label>Número de restricciones (m):</label>
+                        <input type="number" id="numConstraints" value="2" min="1" max="10">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 5px;">
+                    <h1>Matriz A</h1>
+                    <button class="btn" id="btnMatrix2">Matriz 2x2</button>
+                    <button class="btn" id="btnMatrix3">Matriz 3x3</button>
+                </div>
+
+
+                <div id="matrix"></div>
+                <div id="vectorB"></div>
+                <div id="vectorC"></div>
+                <div id="senses"></div>
+                <div>
+                    <label for="max-min">Seleccionado = Max</label>
+                    <input type="checkbox" name="max-min" id="max-min" checked>
+                </div>
+            </div>
+
+            <button class="btn" id="btnCalcular">Calcular</button>
+
+            <div class="results" id="results">
+                <div id="simplex-output">
+                    <h2>Tabla inicial del método Simplex</h2>
+                    <div id="tableau-container"></div>
+                </div>
+
+                <div id="simplex-iterations">
+                    <h2>Iteraciones del Método Simplex</h2>
+                </div>
+
+                <div id="result-container"
+                    style="display:none; margin-top:20px; padding:15px; border:1px solid #ccc; border-radius:8px;">
+                    <h2>Resultado Final</h2>
+                    <p id="result-x"></p>
+                    <p id="result-z"></p>
+                </div>
+
+                <h2>Convergencia del valor de Z</h2>
+                <canvas id="plot-z" width="600" height="300"></canvas>
+
+                <h2 id="title-plot-region">Región factible y recorrido</h2>
+                <canvas id="plot-region" width="600" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
